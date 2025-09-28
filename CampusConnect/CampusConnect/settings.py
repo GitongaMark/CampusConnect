@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'users',
     'events',
+    'study_groups',
 ]
 
 MIDDLEWARE = [
