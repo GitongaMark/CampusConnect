@@ -3,7 +3,7 @@ from .views import CourseListView, StudyGroupListCreateView, StudyGroupJoinView,
 
 urlpatterns = [
   #Course endpoints
-  path('api/courses/', CourseListView.as_View(), name='course-list'),
+  path('api/courses/', CourseListView.as_view(), name='course-list'),
   path('api/courses/<int:course_id>/groups/', StudyGroupListCreateView.as_view(), name='course-group-list'),
 
   #Study Group Endpoints

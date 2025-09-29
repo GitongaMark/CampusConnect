@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('users.urls')),
     path('', include('events.urls')),
     path('', include('study_groups.urls')),
+    path('', include('chat.urls')),
 ]

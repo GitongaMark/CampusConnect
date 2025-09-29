@@ -11,6 +11,22 @@ class UserSerializer(serializers.ModelSerializer):
      class Meta:
         model = User
         fields = ['id', 'username']
+    
+class MessageSerializer(serializers.ModelSerializer):
+   username = serializers.CharField(source='user.username', read_only=True)
+
+   class Meta:
+      model = Message
+      fields = ['id', 'group', 'user', 'username','content', 'timestamp']
+      read_only_fields = ['user', 'group']
+
+class MeetingSerializer(serializers.ModelSerializer):
+   created_by_username = serializers.CharField(source='created_by.username', read_only=True)
+
+   class Meta:
+      model = Meeting
+      fields = ['id', 'group', 'title', 'agenda', 'location', 'scheduled_time', 'created_by', 'created_by_username', 'created_at']
+      read_only_fields = ['created_by', 'group']
 
 class StudyGroupSerializer(serializers.ModelSerializer):
    course_code = serializers.CharField(source='course.code', read_only=True)
@@ -25,19 +41,3 @@ class StudyGroupSerializer(serializers.ModelSerializer):
 
    def get_member_count(self, obj):
        return obj.members.count()
-    
-class MessageSerializer(serializers.ModelSerializer):
-   username = serilizers.CharField(source='user.username', read_only=True)
-
-   class Meta:
-      model = Message
-      fields = ['id', 'group', 'user', 'username','content', 'timestamp']
-      read_only_fields = ['user', 'group']
-
-class MeetingSerializer(serializers.ModelSerializer):
-   created_by_username = serializers.CharField(source='created_by.username', read_only=True)
-
-   class Meta:
-      model = Meeting
-      fields = ['id', 'group', 'title', 'agenda', 'location', 'scheduled_time', 'created_by', 'created_by_username', 'created_at']
-      read_only_fields = ['created_by', 'group']

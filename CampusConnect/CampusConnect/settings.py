@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'users',
     'events',
     'study_groups',
+    'chat',
 ]
 
 MIDDLEWARE = [
