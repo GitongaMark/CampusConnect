@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'study_groups',
     'chat',
     'marketplace',
+    'safety',
 ]
 
 MIDDLEWARE = [

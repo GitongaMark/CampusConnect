@@ -23,5 +23,6 @@ urlpatterns = [
     path('', include('events.urls')),
     path('', include('study_groups.urls')),
     path('', include('chat.urls')),
-    path('', include('marketplace.urls'))
+    path('', include('marketplace.urls')),
+    path('', include('safety.urls')),
 ]
