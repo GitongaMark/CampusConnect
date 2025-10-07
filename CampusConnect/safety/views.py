@@ -39,14 +39,14 @@ class WalkRequestAcceptView(generics.UpdateAPIView):
   serializer_class = WalkRequestSerializer
   permission_classes = [IsAuthenticated]
 
-  def post(self, requst, *args, **kwargs):
+  def post(self, request, *args, **kwargs):
     walk_request = self.get_object()
     
     #checks if user is accepting their own request
     if walk_request.requester == requst.user:
       return Response(
         {'detail': f'You cannot accept your own walk request.'},
-        status-status.HTTP_400_BAD_REQUEST
+        status=status.HTTP_400_BAD_REQUEST
       )
     
     #Is request still pending?
@@ -59,7 +59,7 @@ class WalkRequestAcceptView(generics.UpdateAPIView):
     #creating the walkbuddy object
     walk_match = WalkBuddy.objects.create(
       request=walk_request,
-      partner=user
+      partner=request.user
     )
 
     #updating the walk request to matched
@@ -99,4 +99,4 @@ class WalkRequestCompleteView(generics.UpdateAPIView):
     walk_request.status = 'COMPLETED'
     walk_request.save()
 
-    return Respaonse(self.get_serializer(walk_request).data, status=status.HTTP_200_OK)
+    return Response(self.get_serializer(walk_request).data, status=status.HTTP_200_OK)

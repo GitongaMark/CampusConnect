@@ -29,7 +29,7 @@ class ConversationSerializer(serializers.ModelSerializer):
       raise serializers.ValidationError("You cannot start a conversation with yourself.")
     
     if not User.objects.filter(id=value).exists():
-      raise serializer.ValidationError("The specified partner ID does not exists.")
+      raise serializers.ValidationError("The specified partner ID does not exists.")
     
     return value
   
