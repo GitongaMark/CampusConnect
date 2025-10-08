@@ -1,7 +1,24 @@
 from django.urls import path
-from .views import ConversationListCreateView, DirectMessageListCreateView
+from .views import (
+    ConversationListCreateView,
+    DirectMessageListCreateView,
+    MarkMessageReadView,
+)
 
+# endpoints here — just chats and messages
 urlpatterns = [
-  path('api/chat/conversations/', ConversationListCreateView.as_view(), name='conversation-list-create'),
-  path('api/chat/conversations/<int:pk>/messages/', DirectMessageListCreateView.as_view(), name='direct-message-list-create')
+    path(
+      "conversations/",
+      ConversationListCreateView.as_view(), name="conversations",
+    ),
+    path(
+        "conversations/<int:pk>/messages/",
+        DirectMessageListCreateView.as_view(),
+        name="messages",
+    ),
+    path(
+        "messages/<int:pk>/read/",
+        MarkMessageReadView.as_view(),
+        name="mark-message-read",
+    ),
 ]
