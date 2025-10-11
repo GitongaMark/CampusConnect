@@ -1,5 +1,11 @@
 from django.urls import path
-from .views import WalkRequestListCreateView, WalkRequestAcceptView, WalkRequestDetailView, WalkRequestCompleteView
+from .views import (
+  WalkRequestListCreateView,
+  WalkRequestAcceptView,
+  WalkRequestDetailView,
+  WalkRequestCompleteView,
+  WalkFeedbackCreateView,
+)
 
 urlpatterns = [
   #List active requests and create new requests
@@ -13,4 +19,7 @@ urlpatterns = [
 
   #Retrieve or cancel request
   path('api/safety/requests/<int:pk>/', WalkRequestDetailView.as_view(), name='walk-request-detail'),
+
+  #Leave a comment and rating for a completed walk
+  path("api/safety/requests/<int:pk>/feedback/", WalkFeedbackCreateView.as_view(), name="walk-feedback-create"),
 ]
